@@ -6,8 +6,11 @@ int r,g,b;
 int block=80;
 
 int soldierX;
+int soldierY = block*floor(random(2,6)) ;
 int soldierXSpeed = 2;
 
+int robotX = floor(random(2,8))*80;
+int robotY = floor(random(2,6))*80;
 
 void setup() {
   size(640, 480, P2D);
@@ -36,19 +39,21 @@ void draw() {
   rect(0,block*2-15, width, 15); 
   //sun
   fill(255, 255, 0);
-  ellipse(width-50, y+50,120,120);
+  ellipse(width-50, y+50,130,130);
   fill(253, 184, 19);
-  ellipse(width-50, y+50,110,110);
+  ellipse(width-50, y+50,120,120);
   
   //groundhog
   image(groundhog, block*3.5, 80);
   
-  //soldier
-  image(soldier, soldierX, block*4);
+  //soldierMove
+  image(soldier, soldierX, soldierY);
   soldierX += soldierXSpeed ;
-  soldierX %= (640+80);
+  if (soldierX>=640){
+    soldierX = -block;
+  }
 
   //robot 
-  image(robot, block*6, block*3);
+  image(robot, robotX, robotY);
  
 }
